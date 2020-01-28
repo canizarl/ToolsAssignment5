@@ -12,7 +12,7 @@
 
 typedef struct {
     char flag;  	/*!< -i option. input data file */
-    int number; 	/*!< -x option. Holds minimum size you want to filter */
+    long long int number; 	/*!< -x option. Holds minimum size you want to filter */
 }CLOptions;
 
 

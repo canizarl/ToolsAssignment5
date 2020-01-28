@@ -34,38 +34,59 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         switch(option)
         {	
             case 'K':
-                opts -> number = atoi(optarg);
-                opts -> flag = 1;
+                opts -> number = atoll(optarg);
+                opts -> flag = 'K';
                 break;
 
             case 'M':
-                opts -> number = atoi(optarg);
-                opts -> flag = 2;
+                opts -> number = atoll(optarg);
+                opts -> flag = 'M';
                 break;            
             
             case 'G':
-                opts -> number = atoi(optarg);
-                opts -> flag = 3;
+                opts -> number = atoll(optarg);
+                opts -> flag = 'G';
                 break;            
             
             case 'T':
-                opts -> number = atoi(optarg);
-                opts -> flag = 4;
+                opts -> number = atoll(optarg);
+                opts -> flag = 'T';
                 break;            
             
             case 'P':
-                opts -> number =  atoi(optarg);
-                opts -> flag = 5;
+                opts -> number =  atoll(optarg);
+                opts -> flag = 'P';
                 break;            
             
             case 'E':
-                opts -> number = atoi(optarg);
-                opts -> flag = 6;
+                opts -> number = atoll(optarg);
+                opts -> flag = 'E';
                 break; 
                 
             case 'h':
-                opts -> number = atoi(optarg);
-                opts -> flag = 7;
+                opts -> number = atoll(optarg);
+
+                if (opts -> number < 1024){
+                    opts -> flag = 'n';
+                }
+                else if((opts -> number >= 1024) && (opts -> number < 1.024E6)){
+                    opts -> flag = 'K';
+                }
+                else if((opts -> number >= 1.024E6) && (opts -> number < 1.024E9)){
+                    opts -> flag = 'M';
+                }
+                else if((opts -> number >= 1.024E9) && (opts -> number < 1.024E12)){
+                    opts -> flag = 'G';
+                }
+                else if((opts -> number >= 1.024E12) && (opts -> number < 1.024E15)){
+                    opts -> flag = 'T';
+                }
+                else if((opts -> number >= 1.024E15) && (opts -> number < 1.024E18)){
+                    opts -> flag = 'P';
+                }
+                else if(opts -> number >= 1.024E6){
+                    opts -> flag = 'E';
+                }
                 break;
             
             case '?':
