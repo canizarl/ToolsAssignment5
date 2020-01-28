@@ -10,13 +10,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char * const *argv)
 {
-    int nval;
+    int nval = -1;
+    int flag = 0;
+    CLOptions opts;
     // Read command line arguments
-    nval = parse_command_line(argc,argv);
-
+    parse_command_line(argc,argv, &opts);
+    nval = opts.number;
+    if(nval < 0){
+        fprintf(stderr, "ERROR: round.c : nval not assigned correctly. ");
+    }
+    
+    flag = opts.flag;
+    if(flag == 0){
+        fprintf(stderr, "ERROR: round.c : flag not assigned correctly. ");
+    }
     printf("\nnval:  %d\n", nval);
+    printf("\nflag:  %d\n", flag);
+
 
 
 

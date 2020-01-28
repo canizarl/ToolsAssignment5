@@ -15,7 +15,7 @@ void print_usage(void){
 }
 
 
-int parse_command_line(const int argc, char * argv[])
+void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
 {
     /** 
      * This function takes an argument with an option and stores it in the system.
@@ -23,8 +23,6 @@ int parse_command_line(const int argc, char * argv[])
      * into the program. */
     printf("\n");
     int option;
-    int nval;
-    int flag = 0;
 
 
     /*
@@ -36,38 +34,38 @@ int parse_command_line(const int argc, char * argv[])
         switch(option)
         {	
             case 'K':
-                nval = atoi(optarg);
-                flag = 1;
+                opts -> number = atoi(optarg);
+                opts -> flag = 1;
                 break;
 
             case 'M':
-                nval = atoi(optarg);
-                flag = 2;
+                opts -> number = atoi(optarg);
+                opts -> flag = 2;
                 break;            
             
             case 'G':
-                nval = atoi(optarg);
-                flag = 3;
+                opts -> number = atoi(optarg);
+                opts -> flag = 3;
                 break;            
             
             case 'T':
-                nval = atoi(optarg);
-                flag = 4;
+                opts -> number = atoi(optarg);
+                opts -> flag = 4;
                 break;            
             
             case 'P':
-                nval = atoi(optarg);
-                flag = 5;
+                opts -> number =  atoi(optarg);
+                opts -> flag = 5;
                 break;            
             
             case 'E':
-                nval = atoi(optarg);
-                flag = 6;
+                opts -> number = atoi(optarg);
+                opts -> flag = 6;
                 break; 
                 
             case 'h':
-                nval = atoi(optarg);
-                flag = 7;
+                opts -> number = atoi(optarg);
+                opts -> flag = 7;
                 break;
             
             case '?':
@@ -84,6 +82,7 @@ int parse_command_line(const int argc, char * argv[])
 
         }
     }
-    return nval;
-}
 
+
+
+}

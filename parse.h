@@ -9,7 +9,14 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-int parse_command_line(const int argc, char *argv[]);
+
+typedef struct {
+    char flag;  	/*!< -i option. input data file */
+    int number; 	/*!< -x option. Holds minimum size you want to filter */
+}CLOptions;
+
+
+void parse_command_line(const int argc, char *const *argv, CLOptions *opts);
 void print_usage(void);
 
 
