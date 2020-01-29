@@ -15,10 +15,10 @@ round.o: round.c parse.h
 parse.o: parse.c parse.h
 	$(CC) $(CFLAGS) -c parse.c
 
-my_seq: my_seq.c parseSeq.h
+my_seq: $(objectsSeq)
 	$(CC) $(CFLAGS) -o my_seq $(objectsSeq)
 
-my_seq.o: my_seq.c 
+my_seq.o: my_seq.c parseSeq.h
 	$(CC) $(CFLAGS) -c my_seq.c
 
 parseSeq.o: parseSeq.c parseSeq.h
