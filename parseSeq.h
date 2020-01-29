@@ -18,6 +18,7 @@ typedef struct {
     int last;  	// last value 
     int increment; 	// increment value 
     int first;  // first value 
+    int wflag;
 }CLOptions;
 
 

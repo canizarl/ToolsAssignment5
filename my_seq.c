@@ -11,12 +11,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "parseSeq.h"
 #include <getopt.h>
 
 
 int main(int argc, char * const *argv)
 {  
-    
+    CLOptions opts;
+    parse_command_line(argc,argv, &opts);
 
 
 
