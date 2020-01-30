@@ -8,6 +8,14 @@ objectsSeq = my_seq.o parseSeq.o
 objectsGrep = my_grep.o parseGrep.o
 objectsHexd = my_hexdump.o parseHexd.o
 
+
+
+# NOTE!!!
+# I used github for version control 
+# https://github.com/canizarl/ToolsAssignment5.git
+
+
+
 # Question 1 ROUND 
 round: $(objectsRound)
 	$(CC) $(CFLAGS) -o round $(objectsRound)
