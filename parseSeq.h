@@ -20,7 +20,7 @@ typedef struct {
     int last;  	// last value 
     int increment; 	// increment value 
     int first;  // first value 
-    int wflag;
+    int wflag; // check if -w option has been given 
 }CLOptions;
 
 
