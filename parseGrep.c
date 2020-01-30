@@ -32,6 +32,8 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
     int option;
     int i;
     
+
+    // just to help the programmer see whats going on with the parsing commands
     if(debugging == 1){
         /* display arguments */ 
         printf("\nargc: %d", argc);
@@ -42,14 +44,18 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         printf("\n");
     }
 
+
+
     int j = 0;
     for(i = 1; i< argc; i++){
         if(*argv[i] !='-'){
             if(j == 0){
+                // add input string to the data struct
                 opts -> text = argv[i];
                 j++;
             }
             else if(j == 1){
+                // add filename to the data struct
                 opts -> filename = argv[i];
             }
             else{
@@ -62,9 +68,11 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
     }
 
     if(argc == 1){
-        print_usage();
+        print_usage();   // in case the user doesnt know how to use it and just types ./my_grep
     }
 
+
+    // initialising the flags in the data struct
     opts -> nflag = 0;
     opts -> vflag = 0;
     opts -> cflag = 0;
