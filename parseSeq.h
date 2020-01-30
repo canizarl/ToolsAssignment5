@@ -26,4 +26,6 @@ void parse_command_line(const int argc, char *const *argv, CLOptions *opts);
 void print_usage(void);
 int isnumber(char const *stringp);
 
+
+
 #endif /* end of include guard: PARSESEQ_H */

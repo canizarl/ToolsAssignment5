@@ -42,18 +42,40 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         
     }
 
-    int *seqnumbers = malloc(sizeof(int)*3);
-    seqnumbers[0] = 1;
-    seqnumbers[1] = 1;
+    int *seqnumbers = calloc(3,sizeof(int));
+    int j = 0;
     for(i = 1; i<argc; i++){
         if(isnumber(argv[i])){
-            printf("\nhello there\n");
-        }
-
-
-
-
+            seqnumbers[j] = atoi(argv[i]);
+            j++;
+        }   
     }
+
+    if (j == 1){
+        opts -> last = seqnumbers[0];
+        opts -> increment = 1;
+        opts -> first = 1;
+    }
+    else if(j == 2){
+        opts -> first = seqnumbers[0];
+        opts -> last = seqnumbers[1];
+        opts -> increment = 1;
+    }
+    else if( j == 3){
+        opts -> first = seqnumbers[0];
+        opts -> increment = seqnumbers[1];
+        opts -> last = seqnumbers[2];
+         
+    }
+    else{
+        printf("\nWARNING - TOO MANY INPUTS\n");
+    }
+
+    if(debugging == 1){
+        printf("first: %d   ||   increment: %d   ||  last: %d   \n", opts->first, opts->increment , opts->last);
+    }
+    
+
 
     while((option = getopt(argc,argv,"w")) != -1 )
     {
@@ -107,3 +129,5 @@ int isnumber(char const *stringp){
 
     return 1;
 }
+
+

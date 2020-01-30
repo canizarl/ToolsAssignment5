@@ -14,6 +14,7 @@
 #include "parseSeq.h"
 #include <getopt.h>
 
+void printresult(CLOptions *opts);
 
 int main(int argc, char * const *argv)
 {  
@@ -28,3 +29,6 @@ int main(int argc, char * const *argv)
     return 0;
 }
 
+void printresult(CLOptions *opts){
+    
+}
