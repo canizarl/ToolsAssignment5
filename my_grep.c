@@ -21,7 +21,6 @@
 #include <string.h>
 
 /* function prototypes */ 
-int checkstrings(char *linetocheck, char *stringp);
 
 
 /* THE MAIN FUNCTION */ 

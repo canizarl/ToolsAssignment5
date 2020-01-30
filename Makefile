@@ -6,7 +6,7 @@ CFLAGS = -Wall -g
 objectsRound = round.o parse.o
 objectsSeq = my_seq.o parseSeq.o
 objectsGrep = my_grep.o parseGrep.o
-
+objectsHexd = my_hexdump.o parseHexd.o
 
 # Question 1 ROUND 
 round: $(objectsRound)
@@ -47,12 +47,15 @@ parseGrep.o: parseGrep.c parseGrep.h
 
 
 
-# Question 4 MY_HEXDUMP
-test: test.o
-	$(CC) $(CFLAGS) -o test test.o
+# # Question 4 MY_HEXDUMP
+# my_hexdump: $(objectsHexd)
+# 	$(CC) $(CFLAGS) -o my_hexdump $(objectsHexd)
 
-test.o: test.c
-	$(CC) $(CFLAGS) -c test.c
+# my_hexdump.o: my_hexdump.c parseHexd.h
+# 	$(CC) $(CFLAGS) -c my_hexdump.c
+
+# parseGrep.o: parseHexd.c parseHexd.h
+# 	$(CC) $(CFLAGS) -c parseHexd.c
 
 
 
@@ -62,3 +65,4 @@ clean:
 	$(RM) round $(objectsRound)
 	$(RM) round $(objectsSeq)
 	$(RM) round $(objectsGrep)
+	$(RM) round $(objectsHexd)
