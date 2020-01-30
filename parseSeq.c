@@ -42,6 +42,19 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         
     }
 
+    int *seqnumbers = malloc(sizeof(int)*3);
+    seqnumbers[0] = 1;
+    seqnumbers[1] = 1;
+    for(i = 1; i<argc; i++){
+        if(isnumber(argv[i])){
+            printf("\nhello there\n");
+        }
+
+
+
+
+    }
+
     while((option = getopt(argc,argv,"w")) != -1 )
     {
         switch(option)
@@ -57,16 +70,40 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
                 break;
             
             default:
-
-                printf("Defaults\n");
-                // print_usage();
-                // exit(EXIT_FAILURE);
+                print_usage();
+                exit(EXIT_FAILURE);
         }
 
 
     }
 
 
+    free(seqnumbers);
 
+}
 
+int isnumber(char const *stringp){
+    if(stringp == NULL || *stringp == '\0'){
+        return 0;
+    }
+
+    int dots = 0;
+    while(*stringp){
+        char c = *stringp;
+        switch(c){
+            case '.':
+                if(++dots > 1){
+                    return 0;
+                }
+                break;
+
+            default:
+                if(c<'0' || c >'9'){
+                    return 0;
+                }
+        }
+        stringp++;
+    }
+
+    return 1;
 }
