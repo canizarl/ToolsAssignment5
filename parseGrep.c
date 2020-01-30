@@ -22,7 +22,7 @@ void print_usage(void){
     /*
     * Default message display to tell the user how to use the parsing function
     */
-    printf(" usage: grep [-nvc] TEXT [filename]\n");
+    printf(" usage: ./my_grep [-nvc] TEXT filename\n");
 }
 
 

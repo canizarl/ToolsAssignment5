@@ -47,15 +47,15 @@ parseGrep.o: parseGrep.c parseGrep.h
 
 
 
-# # Question 4 MY_HEXDUMP
-# my_hexdump: $(objectsHexd)
-# 	$(CC) $(CFLAGS) -o my_hexdump $(objectsHexd)
+# Question 4 MY_HEXDUMP
+my_hexdump: $(objectsHexd)
+	$(CC) $(CFLAGS) -o my_hexdump $(objectsHexd)
 
-# my_hexdump.o: my_hexdump.c parseHexd.h
-# 	$(CC) $(CFLAGS) -c my_hexdump.c
+my_hexdump.o: my_hexdump.c parseHexd.h
+	$(CC) $(CFLAGS) -c my_hexdump.c
 
-# parseGrep.o: parseHexd.c parseHexd.h
-# 	$(CC) $(CFLAGS) -c parseHexd.c
+parseGrep.o: parseHexd.c parseHexd.h
+	$(CC) $(CFLAGS) -c parseHexd.c
 
 
 
