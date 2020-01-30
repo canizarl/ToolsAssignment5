@@ -1,9 +1,11 @@
 /**
- * \file parse.h
+ * \file parseSeq.h
  * \brief 
         header file containing function prototypes for 
         parseSeq.c which takes one, two or three integers. 
         Stores these into a struct defined below. 
+
+        it also contains some function prototypes needed in parseSeq.c
 
         
  * \author L. Alberto Canizares
