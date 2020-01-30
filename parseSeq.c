@@ -120,8 +120,6 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
                 print_usage();
                 exit(EXIT_FAILURE);
         }
-
-
     }
 
     // deallocate memory for seqnumbers 

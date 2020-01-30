@@ -3,11 +3,14 @@ CC = gcc
 CFLAGS = -Wall -g
 
 # custom variables
-objects = round.o parse.o
+objectsRound = round.o parse.o
 objectsSeq = my_seq.o parseSeq.o
+objectsGrep = my_grep.o parseGrep.o
 
-round: $(objects)
-	$(CC) $(CFLAGS) -o round $(objects)
+
+# Question 1 ROUND 
+round: $(objectsRound)
+	$(CC) $(CFLAGS) -o round $(objectsRound)
 
 round.o: round.c parse.h
 	$(CC) $(CFLAGS) -c round.c
@@ -15,6 +18,10 @@ round.o: round.c parse.h
 parse.o: parse.c parse.h
 	$(CC) $(CFLAGS) -c parse.c
 
+
+
+
+# Question 2 MY_SEQ
 my_seq: $(objectsSeq)
 	$(CC) $(CFLAGS) -o my_seq $(objectsSeq)
 
@@ -25,7 +32,28 @@ parseSeq.o: parseSeq.c parseSeq.h
 	$(CC) $(CFLAGS) -c parseSeq.c
 
 
-.PHONY: clean test
+
+
+# Question 3 MY_GREP
+my_grep: $(objectsGrep)
+	$(CC) $(CFLAGS) -o my_grep $(objectsGrep)
+
+my_grep.o: my_grep.c parseGrep.h
+	$(CC) $(CFLAGS) -c my_grep.c
+
+parseGrep.o: parseGrep.c parseGrep.h
+	$(CC) $(CFLAGS) -c parseGrep.c
+
+
+
+
+# Question 4 MY_HEXDUMP
+
+
+
+
+.PHONY: 
 clean:
-	$(RM) round $(objects)
+	$(RM) round $(objectsRound)
 	$(RM) round $(objectsSeq)
+	$(RM) round $(objectsGrep)
