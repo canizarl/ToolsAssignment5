@@ -48,6 +48,11 @@ parseGrep.o: parseGrep.c parseGrep.h
 
 
 # Question 4 MY_HEXDUMP
+test: test.o
+	$(CC) $(CFLAGS) -o test test.o
+
+test.o: test.c
+	$(CC) $(CFLAGS) -c test.c
 
 
 
