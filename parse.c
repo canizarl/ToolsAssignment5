@@ -67,6 +67,10 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         opts -> flag = 'K'; 
     }
 
+    if(argc == 1){
+            print_usage();
+    }
+
 
     /** 
      * When an option and an integer are passed the program selects from 

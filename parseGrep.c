@@ -28,7 +28,7 @@ void print_usage(void){
 
 void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
 {   
-    int debugging = 1; // change to 1 for extra information
+    int debugging = 0; // change to 1 for extra information
     int option;
     int i;
     
@@ -40,8 +40,32 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
             printf(" %s ", argv[i]);
         }
         printf("\n");
-        
     }
+
+    int j = 0;
+    for(i = 1; i< argc; i++){
+        if(*argv[i] !='-'){
+            if(j == 0){
+                opts -> text = argv[i];
+                j++;
+            }
+            else if(j == 1){
+                opts -> filename = argv[i];
+            }
+            else{
+                printf("WARNING: TOO MANY INPUTS");
+            }
+
+
+
+        }
+    }
+
+    if(argc == 1){
+        print_usage();
+    }
+
+
      // handle the -nvc option
     while((option = getopt(argc,argv,"nvc")) != -1 )
     {
@@ -51,20 +75,22 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
                 if(debugging == 1){
                     printf("OPTION n\n");
                 }
+                opts -> nflag = 1;
                 break;
 
             case 'v':
                 if(debugging == 1){
                     printf("OPTION v\n");
                 }
+                opts -> vflag = 1;
                 break;
 
             case 'c':
                 if(debugging == 1){
                     printf("OPTION c\n");
                 }
+                opts -> cflag = 1;
                 break;
-
 
             case '?':
                 printf("\nUnknown option\n");

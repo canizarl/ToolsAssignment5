@@ -17,6 +17,9 @@
 typedef struct {
    char *text;
    char *filename;
+   int nflag;
+   int cflag;
+   int vflag;
 }CLOptions;
 
 

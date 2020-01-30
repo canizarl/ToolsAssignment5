@@ -22,6 +22,10 @@
 /* THE MAIN FUNCTION */ 
 int main(int argc, char * const *argv)
 {  
+    // SETTINGS
+    int debugging=1;
+
+
 
     // make a data structure to store the command line arguments
     CLOptions opts;
@@ -29,8 +33,12 @@ int main(int argc, char * const *argv)
     // read the command line arguments
     parse_command_line(argc,argv, &opts);
 
+    if(debugging==1){
+        printf("TEXT:  %s \n", opts.text);
+        printf("FNAME: %s \n", opts.filename);
+    }
 
-
+    
     
     return 0;
 }

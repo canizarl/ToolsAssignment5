@@ -101,6 +101,10 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         printf("first: %d   ||   increment: %d   ||  last: %d   \n", opts->first, opts->increment , opts->last);
     }
     
+    if(argc == 1){
+        print_usage();
+    }
+
 
     // handle the -w option
     while((option = getopt(argc,argv,"w")) != -1 )
