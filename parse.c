@@ -63,6 +63,7 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         opts -> number = atoll(argv[1]);
         if(atoll(argv[1])==0){
             fprintf(stderr, "\nERRROR Not a number or number not assigned correctly to opts ");
+            exit(EXIT_FAILURE);
         }
         opts -> flag = 'K'; 
     }

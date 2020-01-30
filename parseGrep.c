@@ -66,7 +66,7 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
     }
 
 
-     // handle the -nvc option
+    // handle the -nvc option
     while((option = getopt(argc,argv,"nvc")) != -1 )
     {
         switch(option)

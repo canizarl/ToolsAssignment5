@@ -24,7 +24,7 @@ int main(int argc, char * const *argv)
 {  
     // SETTINGS
     int debugging=1;
-
+    char buff[255];
 
 
     // make a data structure to store the command line arguments
@@ -38,8 +38,21 @@ int main(int argc, char * const *argv)
         printf("FNAME: %s \n", opts.filename);
     }
 
+    FILE* fptr = fopen("bohemian.txt","r"); 
+    if (fptr==NULL){ 
+        fprintf(stderr, "\nERROR: no such file.\n"); 
+        exit(EXIT_FAILURE); 
+    } 
+    while(fscanf(fptr, "%[^\n]\n", buff)!=EOF){  
+        printf("%s \n", buff );  
+    }  
     
-    
+
+
+
+
+    fclose(fptr);
+
     return 0;
 }
 
