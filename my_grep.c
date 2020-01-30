@@ -17,12 +17,12 @@
 int checkstrings(char *linetocheck, char *stringp);
 
 
-
 /* THE MAIN FUNCTION */ 
 int main(int argc, char * const *argv)
 {  
+    printf("\n");
     // SETTINGS
-    int debugging=1;
+    int debugging=0;
     char buff[255];
     char *ret;
 
@@ -42,11 +42,68 @@ int main(int argc, char * const *argv)
         fprintf(stderr, "\nERROR: no such file.\n"); 
         exit(EXIT_FAILURE); 
     } 
-    while(fscanf(fptr, "%[^\n]\n", buff)!=EOF){
-        
+
+    int n = 0;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int t = 0;
+    while(opts.text[k] != '\0'){
+        k++;
+    }
+    
+
+    while(fgets(buff,255,fptr)!=NULL){
+        n++;
         
         if((ret = strstr(buff, opts.text))!=NULL){
-            printf("%s \n", buff);
+            
+            if(opts.vflag == 0){
+                if(opts.nflag == 1){
+                    printf("%d: ", n);
+                }
+                if(opts.cflag == 0){
+                    printf("%s", buff);
+                }
+                if(opts.cflag == 1){
+                    i = 0;
+                    j = 0;
+                  
+                    while(buff[i]!= '\0'){
+                        
+                        //printf("j = %d \n", j);
+                        if(&buff[i] == &ret[j]){
+                            for(t=0; t<k; t++){
+                                printf("\033[1;31m");
+                                printf("%c", buff[i]);
+                                printf("\033[0m");
+                                i++;
+                            }
+                            i--;
+
+                            ret = strstr(ret+1, opts.text);
+
+                        }
+                        else{
+                            printf("%c", buff[i]);
+                        }
+
+                        i++;
+                        
+                    }
+                    
+                  
+                    
+                }
+            }
+            
+
+        }
+        else if(((ret = strstr(buff, opts.text)) ==NULL) && (opts.vflag == 1)){
+            if(opts.nflag == 1){
+                printf("%d: ", n);
+            }
+            printf("%s", buff);
         }
         
     }  
@@ -55,44 +112,7 @@ int main(int argc, char * const *argv)
 
 
     fclose(fptr);
-
+    printf("\n");
     return 0;
 }
-
-
-// int checkstrings(char *linetocheck, char *stringp){
-//     int debugging = 1;
-//     if(debugging == 1){
-//        printf("checkstrings\n");
-//     }
-//     if(stringp == NULL || *stringp == '\0'){
-//         return 0;
-//     }
-//     if(linetocheck == NULL || *linetocheck == '\0'){
-//         return 0;
-//     }
-
-//     int test;
-//     int i = 0;
-//     while(*linetocheck){
-//         printf("%c ", *linetocheck);
-//         char c = *linetocheck;
-//         if(c == stringp[i]){
-//             i++;
-//             test = 1;
-//             if(stringp[i]=='\0'){
-//                 return test;
-//             }
-//         }
-//         else{
-//             i = 0;
-//             test = 0;
-//         }
-//         stringp++;
-//     }
-
-
-//     return test;
-// }
-
 
