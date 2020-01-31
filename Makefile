@@ -62,7 +62,7 @@ my_hexdump: $(objectsHexd)
 my_hexdump.o: my_hexdump.c parseHexd.h
 	$(CC) $(CFLAGS) -c my_hexdump.c
 
-parseGrep.o: parseHexd.c parseHexd.h
+parseHexd.o: parseHexd.c parseHexd.h
 	$(CC) $(CFLAGS) -c parseHexd.c
 
 
