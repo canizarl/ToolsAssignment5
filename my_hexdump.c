@@ -18,6 +18,7 @@
 #include <string.h>
 
 /* function prototypes */ 
+void ascii2hex(char* istr, char* ostr);
 
 
 /* THE MAIN FUNCTION */ 
@@ -43,13 +44,67 @@ int main(int argc, char * const *argv){
         exit(EXIT_FAILURE); 
     } 
 
+    int i;
+    int k;
+    int t = 0;
+    int j = 0;
+    printf("%07X  ", j);
     while(fgets(buff,255,fptr)!=NULL){
-        printf("%s", buff); 
+        //printf("%s", buff);
+        int lengths = strlen(buff);
+        char hexs[(lengths*2)+1]; 
+        ascii2hex(buff,hexs);
+
+        i=0;
+        k = 0;
+        
+        
+        while(hexs[i]!='\0'){
+            if(k == 0){
+                printf("%c", hexs[i]);
+                k++;
+            }
+            else if(k == 1){
+                printf("%c ", hexs[i]);
+                k = 0;
+                t++;
+                if(t == 8 ){
+                    printf(" ");
+                }
+            }
+            if(t == 16){
+                printf("\n");
+                t = 0;
+                j++;
+                printf("%07X  ", j);
+            }
+            
+            i++;
+        }
+        
+        
+
+
 
 
     }
 
-    fprintf("\n");
+    printf("\n");
     fclose(fptr);
     return 0;
  }
+
+
+ void ascii2hex(char* istr, char* ostr){
+    int i = 0;
+    int j = 0; 
+    //char buff[255];
+    
+    while(istr[j] != '\0'){
+        sprintf((ostr+i),"%02X", istr[j]);
+        j++;
+        i = i+2;
+    }
+    //insert NULL at the end of the output string
+    ostr[i++] = '\0';
+}
