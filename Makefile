@@ -70,7 +70,7 @@ parseHexd.o: parseHexd.c parseHexd.h
 
 .PHONY: 
 clean:
-	$(RM) round $(objectsRound)
-	$(RM) round $(objectsSeq)
-	$(RM) round $(objectsGrep)
-	$(RM) round $(objectsHexd)
+	$(RM) round $(objectsRound) round
+	$(RM) round $(objectsSeq) my_seq
+	$(RM) round $(objectsGrep) my_grep
+	$(RM) round $(objectsHexd) my_hexdump
