@@ -19,6 +19,7 @@
 
 /* function prototypes */ 
 void ascii2hex(char* istr, char* ostr);
+void hex2ascii(char* istr, char* ostr);
 
 
 /* THE MAIN FUNCTION */ 
@@ -48,47 +49,68 @@ int main(int argc, char * const *argv){
     int k;
     int t = 0;
     int j = 0;
-    printf("%07X  ", j);
+    int bytes = 0;
+    printf("%07x0  ", j);
     while(fgets(buff,255,fptr)!=NULL){
         //printf("%s", buff);
         int lengths = strlen(buff);
-        char hexs[(lengths*2)+1]; 
+        char hexs[(lengths*2)+1];
+        
         ascii2hex(buff,hexs);
 
         i=0;
         k = 0;
-        
+        char *buff2ascii = malloc(sizeof(char)*32);
+        char buffinascii[16];
+        if(buff2ascii==NULL){
+	        fprintf(stderr,"Error making buff2ascii pointer. \n");
+	        exit(EXIT_FAILURE);
+        }
         
         while(hexs[i]!='\0'){
             if(k == 0){
                 printf("%c", hexs[i]);
+                buff2ascii[t] = hexs[i];
                 k++;
             }
             else if(k == 1){
                 printf("%c ", hexs[i]);
+                buff2ascii[t] = hexs[i];
                 k = 0;
                 t++;
+                bytes++;
                 if(t == 8 ){
                     printf(" ");
                 }
             }
             if(t == 16){
+                printf(" |  " );
+                hex2ascii(buff2ascii, buffinascii);
+                if(debugging==1){
+                    printf("%d",(int)buffinascii);
+                }
+                else{
+                    printf("%d", buffinascii);
+                }
+
+                // here goes the hex2asscii code
+                printf("  | ");
                 printf("\n");
                 t = 0;
                 j++;
-                printf("%07X  ", j);
+                printf("%07x0  ", j);
             }
             
             i++;
         }
         
-        
+        free(buff2ascii);
 
 
-
+    
 
     }
-
+    printf("\n%08x\n",bytes);
     printf("\n");
     fclose(fptr);
     return 0;
@@ -98,13 +120,29 @@ int main(int argc, char * const *argv){
  void ascii2hex(char* istr, char* ostr){
     int i = 0;
     int j = 0; 
-    //char buff[255];
     
     while(istr[j] != '\0'){
-        sprintf((ostr+i),"%02X", istr[j]);
+        sprintf((ostr+i),"%02x", istr[j]);
         j++;
         i = i+2;
     }
     //insert NULL at the end of the output string
     ostr[i++] = '\0';
+}
+
+ void hex2ascii(char* istr, char* ostr){
+    // make code here to turn each bytes into ASCII
+    int i = 0;
+    int j = 0;
+    char buff[2];
+    while (istr[i]!='\0'){
+        buff[0] = istr[i];
+        buff[1] = istr[i+1];
+        int number = strtol(buff, NULL, 16);
+        i+=2;
+        ostr[j] = (char) number;
+        j++;
+
+    }
+
 }
