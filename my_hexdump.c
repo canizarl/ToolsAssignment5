@@ -1,7 +1,8 @@
 /**
  * \file my_hexdump.c
  * \brief This program mimics the hexdump shell utility.
-        To use you must give it a filename. 
+        To use you must give it the filename of a txt file
+        located in the same directory 
 
     # NOTE!!!
     # I used github for version control 
@@ -30,6 +31,7 @@ int main(int argc, char * const *argv){
     CLOptions opts;
     char buff[255];
 
+    // Parse commands to obtain filename
     parse_command_line(argc, argv, &opts);
 
 
@@ -45,15 +47,19 @@ int main(int argc, char * const *argv){
         exit(EXIT_FAILURE); 
     } 
 
-    int i;
-    int k;
-    int t = 0;
-    int j = 0;
-    int b = 0;
-    int bytes = 0;
-    printf("%07x0  ", j);
+    int i;          // keeps track of the hexadecimal numbers being printed
+    int k;          // toggles between 0 and 1 to print each byte as two numbers
+    int t = 0;      //  counter for each byte
+    int j = 0;      // this is to count the lines being displayed. 
+    int b = 0;      // counter for the second buffer (to display  the text)
+    int bytes = 0;  // counter of all the bytes in the file. 
+    printf("%07x0  ", j); // First line. 
     
-    char *secondbuff = malloc(sizeof(char)*16);
+
+
+    // Allocate memory for the second buffer which will be used to display 
+    // the text on  the right hand side. 
+    char *secondbuff = malloc(sizeof(char)*16);   
     if (secondbuff==NULL){ 
         fprintf(stderr, "\nERROR: second buffer error.\n"); 
         exit(EXIT_FAILURE); 
@@ -61,18 +67,32 @@ int main(int argc, char * const *argv){
 
     
     while(fgets(buff,255,fptr)!=NULL){
-        //printf("%s", buff);
+        // This loop reads through each line in the file 
+        // amd stores it in a buffer. 
+
+
         int lengths = strlen(buff);
-        char hexs[(lengths*2)+1];
+        char hexs[(lengths*2)+1];     // this will store the hexadecimal numbers
         
+        // convert buffer into hexadecimal
         ascii2hex(buff,hexs);
+        
+        
+        // counters reset
         b = 0;
-        i=0;
+        i = 0;
         k = 0;
         
 
         while(hexs[i]!='\0'){
+            /* This loop goes throught each hexadecimal number 
+            and prints 16 bytes in one line. */ 
             
+
+            /* Each character in hexadecimal is comprised of two numbers 
+                if k = 0 then the first one is printed
+                if k = 1 then the second one is printed and a gap is also 
+                printed to account for the next character. */
             if(k == 0){
                 printf("%c", hexs[i]);
                 k++;
@@ -82,7 +102,7 @@ int main(int argc, char * const *argv){
                 printf("%c ", hexs[i]);
                 k = 0;
 
-
+                /* Non - printable characters are shown as a dot. */ 
                 if(buff[b] == '\0' ||buff[b] == '\a' ||buff[b] == '\b' ||buff[b] == '\f' ||buff[b] == '\n' ||buff[b] == '\r' ||buff[b] == '\t' ||buff[b] == '\v'){ 
                     *(secondbuff+t) = '.';
                     b++;
@@ -99,6 +119,7 @@ int main(int argc, char * const *argv){
                 }
             }
             if(t == 16){
+                /* If 16 bytes have been printed then it prints the text to the side and makes a new line. */ 
                 printf("|" );
                 
                 int kk;
@@ -107,10 +128,7 @@ int main(int argc, char * const *argv){
                 }
                 printf("|");
                 printf("\n");
-                
-                
-                
-                
+
                 
                 t = 0;
                 j++;
@@ -135,6 +153,8 @@ int main(int argc, char * const *argv){
 
 
  void ascii2hex(char* istr, char* ostr){
+     /* This function turns asscii characters 
+     into hexadecimal numbers.  */ 
     int i = 0;
     int j = 0; 
     
@@ -143,7 +163,8 @@ int main(int argc, char * const *argv){
         j++;
         i = i+2;
     }
-    //insert NULL at the end of the output string
+    
+    /* C requires a NULL character at the end of a string  */ 
     ostr[i++] = '\0';
 }
 

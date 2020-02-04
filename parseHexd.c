@@ -42,7 +42,7 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         print_usage();   // in case the user doesnt know how to use it and just types ./my_grep
     }
     else if(argc == 2){
-        opts -> filename = argv[1];
+        opts -> filename = argv[1];  // store filename in struct
     }
     else{
         fprintf(stderr, "ERROR :: TOO MANY ARGUMENTS " );

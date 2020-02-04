@@ -49,6 +49,7 @@ int main(int argc, char * const *argv)
     // read the command line arguments
     parse_command_line(argc,argv, &opts);
 
+
     // mimic the seq utility 
     printresult(&opts);
     
@@ -81,7 +82,10 @@ void printresult(CLOptions *opts){
         exit(EXIT_FAILURE);
     }
 
-
+    if(opts->first == opts->last){
+        printf("%d \n", opts->first);
+        exit(EXIT_SUCCESS);
+    }
 
     int i = first; 
     int z;

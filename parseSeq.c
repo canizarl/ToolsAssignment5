@@ -93,6 +93,9 @@ void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
         opts -> last = seqnumbers[2];
          
     }
+    else if(j<1){
+        printf("\nLooks like you didnt input enough numbers. \n");
+    }
     else{
         printf("\nWARNING - TOO MANY INPUTS\n");
     }
