@@ -25,7 +25,7 @@ void print_usage(void){
 void  parse_command_line(const int argc, char *const * argv,CLOptions *opts)
 { 
 
-    int debugging =1;   // change to 1 for debugging help
+    int debugging =0;   // change to 1 for debugging help
 
     int i = 0;
     if(debugging == 1){
